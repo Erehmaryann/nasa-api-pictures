@@ -28,6 +28,8 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	z-index: 10;
+	position: fixed;
 }
 
 /* Navigation */
@@ -47,6 +49,13 @@ body {
 	right: 0;
 	width: 100%;
 	height: 60px;
+	z-index: -1;
+}
+
+.clickable {
+	cursor: pointer;
+	color: dodgerblue;
+	user-select: none;
 }
 
 /* Images Container */
@@ -88,6 +97,9 @@ body {
 }
 
 /* Hidden */
+.hidden {
+	display: none;
+}
 
 /* Large Smartphone (Vertical) */
 @media screen and (max-width: 800px) {
