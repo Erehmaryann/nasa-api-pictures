@@ -117,6 +117,7 @@ body {
 	body {
 		line-height: 1.4rem;
 		font-size: 0.9rem;
+		text-align: justify;
 	}
 
 	.images-container {
@@ -125,5 +126,9 @@ body {
 
 	.card-title {
 		font-size: 20px;
+	}
+
+	.save-confirmed {
+		right: 25px;
 	}
 }
