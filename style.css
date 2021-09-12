@@ -82,6 +82,8 @@ body {
 
 .card-img-top {
 	width: 100%;
+	height: auto;
+	border-radius: 5px 5px 0 0;
 }
 
 .card-body {
@@ -115,6 +117,10 @@ body {
 	body {
 		line-height: 1.4rem;
 		font-size: 0.9rem;
+	}
+
+	.images-container {
+		width: 100%;
 	}
 
 	.card-title {
