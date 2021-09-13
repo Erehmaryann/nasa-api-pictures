@@ -1,4 +1,10 @@
-
+// Select everything you need to target from the html
+// and store it in variables
+const resultsNav = document.querySelector('#resultsNav');
+const favoritesNav = document.querySelector('#favoritesNav');
+const imagesContainer = document.querySelector('.images-container');
+const saveConfirmed = document.querySelector('.save-confirmed');
+const loader = document.querySelector('.loader');
 
 
 // NASA API
