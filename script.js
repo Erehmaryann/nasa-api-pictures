@@ -21,4 +21,5 @@ async function getNasaImages() {
     }
 }
 
+// On Load
 getNasaImages();
