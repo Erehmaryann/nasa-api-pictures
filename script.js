@@ -54,7 +54,13 @@ function updateDOM() {
         date.textContent = result.date;
         // Create CopyRight
         const copyright = document.createElement('span');
-        copyright.textContent = `${results.copyright}`;
+        copyright.textContent = `${result.copyright}`;
+        // Append 
+        footer.append(date, copyright); // Footer
+        cardBody.append(cardTitle, saveText, cardText, footer); //CardBody
+        link.appendChild(image); // Link
+        card.append(link, cardBody); // Card
+        imagesContainer.appendChild(card); // Images Container
     });
 }
 
