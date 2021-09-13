@@ -17,6 +17,11 @@ let resultsArray = [];
 // favorite object
 let favorite = {};
 
+// Remove the loader, Show the results
+const showContent = () => {
+    loader.classList.add('hidden');
+};
+
 // add results to favorites
 const saveFavorite = (itemUrl) => {
     // Loop through the resultsArray to select favorite item
@@ -116,11 +121,13 @@ function updateDOM(page) {
     // reset the DOM
     imagesContainer.textContent = "";
     createDOMNodes(page);
-
+    showContent();
 }
 
 // Get 10 random images from NASA API
 async function getNasaImages() {
+    // Show Loader
+    loader.classList.remove('hidden');
     try {
         const response = await fetch(apiURL);
         resultsArray = await response.json();
