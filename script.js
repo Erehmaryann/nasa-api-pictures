@@ -34,6 +34,17 @@ const saveFavorite = (itemUrl) => {
     });
 };
 
+// remove item from favorites
+const removeFavorite = (itemUrl) => {
+    if (favorite[itemUrl]) {
+        // Remove Item from favorites
+        delete favorite[itemUrl];
+        // Update local storage
+        localStorage.setItem('nasaFavorite', JSON.stringify(favorite));
+        updateDOM("favorite");
+    }
+};
+
 // Create DOM Nodes
 const createDOMNodes = (page) => {
     const currentArray = page === "results" ? resultsArray : Object.values(favorite);
@@ -64,9 +75,16 @@ const createDOMNodes = (page) => {
         // Create the Save Text
         const saveText = document.createElement('p');
         saveText.classList.add('clickable');
-        saveText.textContent = "Add To Favorites";
-        // Add save text to favorites
-        saveText.setAttribute("onclick", `saveFavorite("${result.url}")`);
+        // Changing the save text based on if the item is in the favorites or not
+        if (page === "results") {
+            saveText.textContent = "Add To Favorites";
+            // Add save text to favorites
+            saveText.setAttribute("onclick", `saveFavorite("${result.url}")`);
+        } else {
+            saveText.textContent = "Remove From Favorites";
+            // Remove save text from favorites
+            saveText.setAttribute("onclick", `removeFavorite("${result.url}")`);
+        }
         // Create the Card Text
         const cardText = document.createElement('p');
         cardText.textContent = result.explanation;
@@ -96,7 +114,10 @@ function updateDOM(page) {
     if (localStorage.getItem('nasaFavorite')) {
         favorite = JSON.parse(localStorage.getItem('nasaFavorite'));
     }
+    // reset the DOM
+    imagesContainer.textContent = "";
     createDOMNodes(page);
+
 }
 
 // Get 10 random images from NASA API
@@ -104,6 +125,7 @@ async function getNasaImages() {
     try {
         const response = await fetch(apiURL);
         resultsArray = await response.json();
+        // updateDOM("results");
         updateDOM("favorite");
     } catch (error) {
         // Catch any errors
