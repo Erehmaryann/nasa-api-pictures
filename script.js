@@ -6,13 +6,33 @@ const imagesContainer = document.querySelector('.images-container');
 const saveConfirmed = document.querySelector('.save-confirmed');
 const loader = document.querySelector('.loader');
 
-
 // NASA API
 const count = 10;
 const apiKey = "hAKOSdL1nwBeS7zom2dzkFPxgxwZHoRX2H1tTZto";
 const apiURL = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&count=${count}`;
 
+// NASA results
 let resultsArray = [];
+
+// favorite object
+let favorite = {};
+
+// add results to favorites
+const saveFavorite = (itemUrl) => {
+    // Loop through the resultsArray to select favorite item
+    resultsArray.forEach(item => {
+        if (item.url.includes(itemUrl) && !favorite[itemUrl]) {
+            favorite[itemUrl] = item;
+            // Show Save Confirmed for 2 seconds
+            saveConfirmed.hidden = false;
+            setTimeout(() => {
+                saveConfirmed.hidden = true;
+            }, 2000);
+            // Set Favorite to local storage
+            localStorage.setItem('favorite', JSON.stringify(favorite));
+        }
+    });
+};
 
 // update the Dom
 function updateDOM() {
@@ -43,6 +63,8 @@ function updateDOM() {
         const saveText = document.createElement('p');
         saveText.classList.add('clickable');
         saveText.textContent = "Add To Favorites";
+        // Add save text to favorites
+        saveText.setAttribute("onclick", `saveFavorite("${result.url}")`);
         // Create the Card Text
         const cardText = document.createElement('p');
         cardText.textContent = result.explanation;
