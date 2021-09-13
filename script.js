@@ -18,12 +18,19 @@ let resultsArray = [];
 let favorite = {};
 
 // Remove the loader, Show the results
-const showContent = () => {
+const showContent = (page) => {
     // scrolls to a particular set of coordinates in the document.
     window.scrollTo({
         top: 0,
         behavior: 'instant'
     });
+    if (page === "results") {
+        resultsNav.classList.remove('hidden');
+        favoritesNav.classList.add('hidden');
+    } else {
+        resultsNav.classList.add('hidden');
+        favoritesNav.classList.remove('hidden');
+    }
     // Hide Loader
     loader.classList.add('hidden');
 };
@@ -127,7 +134,7 @@ function updateDOM(page) {
     // reset the DOM
     imagesContainer.textContent = "";
     createDOMNodes(page);
-    showContent();
+    showContent(page);
 }
 
 // Get 10 random images from NASA API
