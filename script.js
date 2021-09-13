@@ -19,6 +19,12 @@ let favorite = {};
 
 // Remove the loader, Show the results
 const showContent = () => {
+    // scrolls to a particular set of coordinates in the document.
+    window.scrollTo({
+        top: 0,
+        behavior: 'instant'
+    });
+    // Hide Loader
     loader.classList.add('hidden');
 };
 
