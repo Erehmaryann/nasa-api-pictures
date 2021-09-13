@@ -153,3 +153,7 @@ async function getNasaImages() {
 
 // On Load
 getNasaImages();
+
+
+// This is an imperative program, 
+// because we are guiding the computer Step by Step, telling it exactly what to do.
