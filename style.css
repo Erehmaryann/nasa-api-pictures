@@ -11,6 +11,29 @@ body {
 	line-height: 1.8rem;
 }
 
+/* Scroll Bar */
+::-webkit-scrollbar {
+	width: 7px;
+	height: auto;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey;
+	border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: grey;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: rgb(78, 73, 73);
+}
+
 .container {
 	position: relative;
 	display: flex;
