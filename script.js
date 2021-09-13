@@ -48,7 +48,6 @@ const removeFavorite = (itemUrl) => {
 // Create DOM Nodes
 const createDOMNodes = (page) => {
     const currentArray = page === "results" ? resultsArray : Object.values(favorite);
-    console.log("Current", currentArray, page);
     // Loop through the resultsArray
     currentArray.forEach(result => {
         // Create the Card Container
@@ -125,8 +124,8 @@ async function getNasaImages() {
     try {
         const response = await fetch(apiURL);
         resultsArray = await response.json();
-        // updateDOM("results");
-        updateDOM("favorite");
+        updateDOM("results");
+        // updateDOM("favorite");
     } catch (error) {
         // Catch any errors
     }
