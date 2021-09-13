@@ -29,15 +29,17 @@ const saveFavorite = (itemUrl) => {
                 saveConfirmed.hidden = true;
             }, 2000);
             // Set Favorite to local storage
-            localStorage.setItem('favorite', JSON.stringify(favorite));
+            localStorage.setItem('nasaFavorite', JSON.stringify(favorite));
         }
     });
 };
 
-// update the Dom
-function updateDOM() {
+// Create DOM Nodes
+const createDOMNodes = (page) => {
+    const currentArray = page === "results" ? resultsArray : Object.values(favorite);
+    console.log("Current", currentArray, page);
     // Loop through the resultsArray
-    resultsArray.forEach(result => {
+    currentArray.forEach(result => {
         // Create the Card Container
         const card = document.createElement('div');
         card.classList.add('card');
@@ -86,6 +88,15 @@ function updateDOM() {
         card.append(link, cardBody); // Card
         imagesContainer.appendChild(card); // Images Container
     });
+};
+
+// update the Dom
+function updateDOM(page) {
+    // Get Favorites from local storage
+    if (localStorage.getItem('nasaFavorite')) {
+        favorite = JSON.parse(localStorage.getItem('nasaFavorite'));
+    }
+    createDOMNodes(page);
 }
 
 // Get 10 random images from NASA API
@@ -93,7 +104,7 @@ async function getNasaImages() {
     try {
         const response = await fetch(apiURL);
         resultsArray = await response.json();
-        updateDOM();
+        updateDOM("favorite");
     } catch (error) {
         // Catch any errors
     }
