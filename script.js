@@ -52,9 +52,11 @@ function updateDOM() {
         // Create the Date
         const date = document.createElement('strong');
         date.textContent = result.date;
+        // conditionally add copyright
+        const copyrightResult = result.copyright === undefined ? "" : result.copyright;
         // Create CopyRight
         const copyright = document.createElement('span');
-        copyright.textContent = `${result.copyright}`;
+        copyright.textContent = `${copyrightResult}`;
         // Append 
         footer.append(date, copyright); // Footer
         cardBody.append(cardTitle, saveText, cardText, footer); //CardBody
@@ -69,11 +71,9 @@ async function getNasaImages() {
     try {
         const response = await fetch(apiURL);
         resultsArray = await response.json();
-        console.log(resultsArray);
         updateDOM();
     } catch (error) {
         // Catch any errors
-        console.log(error);
     }
 }
 
